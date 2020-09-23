@@ -12,6 +12,8 @@ class HomeViewController: UIViewController {
     
     // MARK:- Properties
     
+    var presenter: HomePresenterProtocol?
+    
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
@@ -20,6 +22,8 @@ class HomeViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
+    
+    // MARK:- Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +32,7 @@ class HomeViewController: UIViewController {
     }
     
     // MARK:- Helper Methods
+    
     func setupLayout() {
         view.addSubview(tableView)
         
@@ -40,6 +45,10 @@ class HomeViewController: UIViewController {
         
     }
 
+}
+
+extension HomeViewController: HomeViewProtocol {
+    
 }
 
 // MARK:- Table view Data Source

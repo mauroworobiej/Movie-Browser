@@ -12,6 +12,11 @@
 		7D2E8C6A251B7F1D0067DC91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E8C69251B7F1D0067DC91 /* Assets.xcassets */; };
 		7D2E8C6D251B7F1D0067DC91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D2E8C6B251B7F1D0067DC91 /* LaunchScreen.storyboard */; };
 		7D89BE17251B8120006E618F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE16251B8120006E618F /* HomeViewController.swift */; };
+		7D89BE1A251B8A90006E618F /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE19251B8A90006E618F /* HomePresenter.swift */; };
+		7D89BE1C251B8AD6006E618F /* HomeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE1B251B8AD6006E618F /* HomeProtocols.swift */; };
+		7D89BE1E251B8AFC006E618F /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */; };
+		7D89BE20251B8B4C006E618F /* HomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */; };
+		7D89BE22251B8BA1006E618F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE21251B8BA1006E618F /* HomeRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +27,11 @@
 		7D2E8C6C251B7F1D0067DC91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D2E8C6E251B7F1D0067DC91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D89BE16251B8120006E618F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		7D89BE19251B8A90006E618F /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
+		7D89BE1B251B8AD6006E618F /* HomeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeProtocols.swift; sourceTree = "<group>"; };
+		7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
+		7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataManager.swift; sourceTree = "<group>"; };
+		7D89BE21251B8BA1006E618F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,11 @@
 			isa = PBXGroup;
 			children = (
 				7D89BE16251B8120006E618F /* HomeViewController.swift */,
+				7D89BE19251B8A90006E618F /* HomePresenter.swift */,
+				7D89BE1B251B8AD6006E618F /* HomeProtocols.swift */,
+				7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */,
+				7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */,
+				7D89BE21251B8BA1006E618F /* HomeRouter.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -143,8 +158,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D2E8C61251B7F1C0067DC91 /* AppDelegate.swift in Sources */,
+				7D89BE1C251B8AD6006E618F /* HomeProtocols.swift in Sources */,
 				7D2E8C63251B7F1C0067DC91 /* SceneDelegate.swift in Sources */,
+				7D89BE1E251B8AFC006E618F /* HomeInteractor.swift in Sources */,
 				7D89BE17251B8120006E618F /* HomeViewController.swift in Sources */,
+				7D89BE22251B8BA1006E618F /* HomeRouter.swift in Sources */,
+				7D89BE20251B8B4C006E618F /* HomeRemoteDataManager.swift in Sources */,
+				7D89BE1A251B8A90006E618F /* HomePresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
