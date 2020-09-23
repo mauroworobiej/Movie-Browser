@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class HomeRouter: HomeRouterProtocol {
-    
+        
     static func createHomeModule() -> UIViewController {
         
         let view = HomeViewController()

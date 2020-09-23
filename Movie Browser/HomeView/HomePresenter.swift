@@ -21,12 +21,19 @@ class HomePresenter {
 
 extension HomePresenter: HomePresenterProtocol {
     func viewDidLoad() {
-        
+        view?.startActivityIndicator()
+        interactor?.fetchData()
     }
 }
 
 // MARK:- Interactor Output Protocol
 
 extension HomePresenter: HomeInteractorOutputProtocol {
+    
+    func pushDataFromInteractor(data: [HomeViewModel]) {
+        view?.pushedDataFromPresenter(data: data)
+        view?.stopActivityIndicator()
+    }
+    
     
 }

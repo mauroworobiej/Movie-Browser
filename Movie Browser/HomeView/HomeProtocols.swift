@@ -14,6 +14,11 @@ import UIKit
 protocol HomeViewProtocol: class {
      
     var presenter: HomePresenterProtocol? { get set }
+    
+    func pushedDataFromPresenter(data: [HomeViewModel])
+    func startActivityIndicator()
+    func stopActivityIndicator()
+
 }
 
 // MARK:- Presenter Protocols
@@ -31,15 +36,18 @@ protocol HomePresenterProtocol: class {
 
 protocol HomeInteractorInputProtocol: class {
     
-    var presenter: HomePresenterProtocol? { get set }
+    var presenter: HomeInteractorOutputProtocol? { get set }
     var remoteDataManager: HomeRemoteDataManagerInputProtocol? { get set }
+    
+    /// Start the data request in the External Data Manager
+    func fetchData()
 
 }
 
 // MARK:- Interactor Output Protocols
 
 protocol HomeInteractorOutputProtocol: class {
-    
+    func pushDataFromInteractor(data: [HomeViewModel])
 }
 
 // MARK:- Data Manager Input Protocols
@@ -52,6 +60,8 @@ protocol HomeDataManagerInputProtocol: class {
 // MARK:- Router Protocols
 
 protocol HomeRouterProtocol: class {
+    
+    /// Create the View and initialize the viper components.
     static func createHomeModule() -> UIViewController
 
 }
@@ -61,12 +71,14 @@ protocol HomeRouterProtocol: class {
 protocol HomeRemoteDataManagerInputProtocol: class {
     
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol? { get set }
+    
+    func getDataFromRemoteDataManager()
 }
 
 
 // MARK:- Remote Request Handler Protocols
 
 protocol HomeRemoteDataManagerOutputProtocol: class {
-    
+    func serviceResponse(data: Movies)
 }
 

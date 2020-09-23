@@ -17,6 +17,8 @@
 		7D89BE1E251B8AFC006E618F /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */; };
 		7D89BE20251B8B4C006E618F /* HomeRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */; };
 		7D89BE22251B8BA1006E618F /* HomeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE21251B8BA1006E618F /* HomeRouter.swift */; };
+		7D89BE24251BC726006E618F /* MoviesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE23251BC726006E618F /* MoviesEntity.swift */; };
+		7D89BE26251BD924006E618F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE25251BD924006E618F /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRemoteDataManager.swift; sourceTree = "<group>"; };
 		7D89BE21251B8BA1006E618F /* HomeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRouter.swift; sourceTree = "<group>"; };
+		7D89BE23251BC726006E618F /* MoviesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEntity.swift; sourceTree = "<group>"; };
+		7D89BE25251BD924006E618F /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +83,12 @@
 			children = (
 				7D89BE16251B8120006E618F /* HomeViewController.swift */,
 				7D89BE19251B8A90006E618F /* HomePresenter.swift */,
-				7D89BE1B251B8AD6006E618F /* HomeProtocols.swift */,
 				7D89BE1D251B8AFC006E618F /* HomeInteractor.swift */,
 				7D89BE1F251B8B4C006E618F /* HomeRemoteDataManager.swift */,
 				7D89BE21251B8BA1006E618F /* HomeRouter.swift */,
+				7D89BE23251BC726006E618F /* MoviesEntity.swift */,
+				7D89BE25251BD924006E618F /* HomeViewModel.swift */,
+				7D89BE1B251B8AD6006E618F /* HomeProtocols.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -160,8 +166,10 @@
 				7D2E8C61251B7F1C0067DC91 /* AppDelegate.swift in Sources */,
 				7D89BE1C251B8AD6006E618F /* HomeProtocols.swift in Sources */,
 				7D2E8C63251B7F1C0067DC91 /* SceneDelegate.swift in Sources */,
+				7D89BE26251BD924006E618F /* HomeViewModel.swift in Sources */,
 				7D89BE1E251B8AFC006E618F /* HomeInteractor.swift in Sources */,
 				7D89BE17251B8120006E618F /* HomeViewController.swift in Sources */,
+				7D89BE24251BC726006E618F /* MoviesEntity.swift in Sources */,
 				7D89BE22251B8BA1006E618F /* HomeRouter.swift in Sources */,
 				7D89BE20251B8B4C006E618F /* HomeRemoteDataManager.swift in Sources */,
 				7D89BE1A251B8A90006E618F /* HomePresenter.swift in Sources */,
