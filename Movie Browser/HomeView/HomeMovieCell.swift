@@ -30,8 +30,8 @@ class HomeMovieCell: UITableViewCell {
     
     var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .justified
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 20, weight: .regular)
         label.numberOfLines = 8
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -71,8 +71,6 @@ class HomeMovieCell: UITableViewCell {
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
-        ])
-        
-        
+        ])        
     }
 }
