@@ -13,7 +13,7 @@ class HomeInteractor: HomeInteractorInputProtocol {
     // MARK:- Properties
     var presenter: HomeInteractorOutputProtocol?
     var remoteDataManager: HomeRemoteDataManagerInputProtocol?
-    private var movies = [HomeViewModel]()
+    private var movies = [MovieViewModel]()
     private var baseImgUrl: BaseImagesUrl?
     private let group = DispatchGroup()
 
@@ -44,7 +44,7 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
                 let title = movie.title ?? "No description"
                 let overview = movie.overview ?? "No description"
                 let posterPath = baseUrl + (movie.posterPath ?? "")
-                let singleMoview = HomeViewModel(title: title, overview: overview, posterPaht: posterPath)
+                let singleMoview = MovieViewModel(title: title, overview: overview, posterPaht: posterPath)
                 self.movies.append(singleMoview)
             }
             self.presenter?.pushDataFromInteractor(data: self.movies)

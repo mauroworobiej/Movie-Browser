@@ -15,7 +15,7 @@ protocol HomeViewProtocol: class {
      
     var presenter: HomePresenterProtocol? { get set }
     
-    func pushedDataFromPresenter(data: [HomeViewModel])
+    func pushedDataFromPresenter(data: [MovieViewModel])
     func startActivityIndicator()
     func stopActivityIndicator()
 }
@@ -29,7 +29,7 @@ protocol HomePresenterProtocol: class {
     var router: HomeRouterProtocol? { get set }
     
     func viewDidLoad()
-    func presentDetailView(with viewModel: HomeViewModel)
+    func presentDetailView(with viewModel: MovieViewModel)
 }
 
 // MARK:- Interactor Input Protocols
@@ -48,7 +48,7 @@ protocol HomeInteractorInputProtocol: class {
 protocol HomeInteractorOutputProtocol: class {
     
     /// Used for the Interactor to pass an array of HomeViewModel to the presenter.
-    func pushDataFromInteractor(data: [HomeViewModel])
+    func pushDataFromInteractor(data: [MovieViewModel])
 }
 
 // MARK:- Router Protocols
@@ -58,7 +58,7 @@ protocol HomeRouterProtocol: class {
     /// Create the View and initialize the viper components.
     static func createHomeModule() -> UIViewController
     /// Push a detail view to a view's navigation controller.
-    func presentDetailMovieView(from view: HomeViewProtocol, with: HomeViewModel)
+    func presentMovieDetailView(from view: HomeViewProtocol, with: MovieViewModel)
 }
 
 // MARK:- Remote Data Manager Protocols

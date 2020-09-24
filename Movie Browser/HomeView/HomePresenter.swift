@@ -25,9 +25,9 @@ extension HomePresenter: HomePresenterProtocol {
         view?.startActivityIndicator()
         interactor?.fetchData()
     }
-    func presentDetailView(with viewModel: HomeViewModel) {
+    func presentDetailView(with viewModel: MovieViewModel) {
         if let view = self.view {
-            router?.presentDetailMovieView(from: view, with: viewModel)
+            router?.presentMovieDetailView(from: view, with: viewModel)
         }        
     }
 }
@@ -36,7 +36,7 @@ extension HomePresenter: HomePresenterProtocol {
 
 extension HomePresenter: HomeInteractorOutputProtocol {
     
-    func pushDataFromInteractor(data: [HomeViewModel]) {
+    func pushDataFromInteractor(data: [MovieViewModel]) {
         view?.pushedDataFromPresenter(data: data)
         view?.stopActivityIndicator()
     }

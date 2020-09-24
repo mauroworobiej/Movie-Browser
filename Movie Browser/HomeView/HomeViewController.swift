@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
     // MARK:- Properties
     
     var presenter: HomePresenterProtocol?
-    private var movies = [HomeViewModel]()
+    private var movies = [MovieViewModel]()
     
     lazy var tableView: UITableView = {
         let table = UITableView()
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     
-    func pushedDataFromPresenter(data: [HomeViewModel]) {
+    func pushedDataFromPresenter(data: [MovieViewModel]) {
         movies = data
         DispatchQueue.main.async {
             self.tableView.reloadData()
