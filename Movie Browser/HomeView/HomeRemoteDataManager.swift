@@ -33,24 +33,25 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            // TODO:- make an Errors Enum
-            if let error = error {
-                completion(.failure(error))
-                return
+        DispatchQueue.global(qos: .background).async {
+            
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                // TODO:- make an Errors Enum
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                // Success
+                guard let data = data else { return }
+                do {
+                    let jsonResponse = try JSONDecoder().decode(T.self, from: data)
+                    completion(.success(jsonResponse))
+                } catch let parsingError {
+                    // TODO:- Use the error enum
+                    completion(.failure(parsingError))
+                }
             }
-            // Success
-            guard let data = data else { return }
-            do {
-                let jsonResponse = try JSONDecoder().decode(T.self, from: data)
-                completion(.success(jsonResponse))
-            } catch let parsingError {
-                // TODO:- Use the error enum
-                completion(.failure(parsingError))
-            }
+            task.resume()
         }
-        task.resume()
-    }
-    
-    
+    }    
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class HomeViewController: UIViewController {
     
@@ -14,13 +15,12 @@ class HomeViewController: UIViewController {
     
     var presenter: HomePresenterProtocol?
     private var movies = [HomeViewModel]()
-
     
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
         table.delegate = self
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "moviewCell")
+        table.register(HomeMovieCell.self, forCellReuseIdentifier: "moviewCell")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
     }()
@@ -97,8 +97,11 @@ extension HomeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "moviewCell", for: indexPath)
-        cell.textLabel?.text = movies[indexPath.row].title
+        let cell = tableView.dequeueReusableCell(withIdentifier: "moviewCell", for: indexPath) as! HomeMovieCell
+        let imageURL = movies[indexPath.row].posterPaht ?? ""
+        cell.movieImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: "camera"))
+        cell.titleLabel.text = movies[indexPath.row].title
+        cell.descriptionLabel.text = movies[indexPath.row].overview
         return cell
     }
 }
@@ -107,6 +110,7 @@ extension HomeViewController: UITableViewDataSource {
 
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         // TODO:- Instanciar el 2º modulo de viper. Detail View.
     }
 }
