@@ -10,10 +10,13 @@ import Foundation
 
 class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     
+    // MARK:- Properties
+    
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol?
     private let apiKey = "2e7aef3dbc345c49c3540bfeea28b24f"
     private let baseUrl = "https://api.themoviedb.org/3"
     
+    // MARK:- Remote Data Manager Input Protocol
     func getDataFromRemoteDataManager() {
         let url = URL(string: "\(baseUrl)/discover/movie?api_key=\(apiKey)&sort_by=popularity.desc")!
         
@@ -43,6 +46,7 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
         }
     }
     
+    // MARK:- Helper Methods
     
     private func fetchDataFromService<T: Codable>(type: T.Type, url : URL, completion : @escaping (Result<T,Error>) -> Void) {
         var request = URLRequest(url: url)

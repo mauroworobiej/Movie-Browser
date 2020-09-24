@@ -10,12 +10,15 @@ import Foundation
 
 class HomeInteractor: HomeInteractorInputProtocol {
     
+    // MARK:- Properties
     var presenter: HomeInteractorOutputProtocol?
     var remoteDataManager: HomeRemoteDataManagerInputProtocol?
     private var movies = [HomeViewModel]()
     private var baseImgUrl: BaseImagesUrl?
     private let group = DispatchGroup()
 
+    // MARK:- Interactor Input Protocol
+    
     func fetchData() {
         group.enter()
         remoteDataManager?.getDataFromRemoteDataManager()
