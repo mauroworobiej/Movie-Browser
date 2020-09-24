@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class HomeRouter: HomeRouterProtocol {
-        
+     
     static func createHomeModule() -> UIViewController {
         
         let view = HomeViewController()
@@ -30,4 +30,10 @@ class HomeRouter: HomeRouterProtocol {
         
         return nav
     }
+    
+    func presentDetailMovieView(from view: HomeViewProtocol, with: HomeViewModel) {
+        // TODO: Present the new viper module form view with the data
+    }
+    
+       
 }

@@ -20,9 +20,15 @@ class HomePresenter {
 // MARK:- Presenter Protocol
 
 extension HomePresenter: HomePresenterProtocol {
+    
     func viewDidLoad() {
         view?.startActivityIndicator()
         interactor?.fetchData()
+    }
+    func presentDetailView(with viewModel: HomeViewModel) {
+        if let view = self.view {
+            router?.presentDetailMovieView(from: view, with: viewModel)
+        }        
     }
 }
 

@@ -29,6 +29,7 @@ protocol HomePresenterProtocol: class {
     var router: HomeRouterProtocol? { get set }
     
     func viewDidLoad()
+    func presentDetailView(with viewModel: HomeViewModel)
 }
 
 // MARK:- Interactor Input Protocols
@@ -56,6 +57,8 @@ protocol HomeRouterProtocol: class {
     
     /// Create the View and initialize the viper components.
     static func createHomeModule() -> UIViewController
+    /// Push a detail view to a view's navigation controller.
+    func presentDetailMovieView(from view: HomeViewProtocol, with: HomeViewModel)
 }
 
 // MARK:- Remote Data Manager Protocols

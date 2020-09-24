@@ -111,6 +111,6 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO:- Instanciar el 2º modulo de viper. Detail View.
+        presenter?.presentDetailView(with: movies[indexPath.row])
     }
 }
