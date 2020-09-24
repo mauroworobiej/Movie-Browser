@@ -12,21 +12,37 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol?
     private let apiKey = "2e7aef3dbc345c49c3540bfeea28b24f"
+    private let baseUrl = "https://api.themoviedb.org/3"
     
     func getDataFromRemoteDataManager() {
-        let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=\(apiKey)&sort_by=release_date.desc")!
+        let url = URL(string: "\(baseUrl)/discover/movie?api_key=\(apiKey)&sort_by=popularity.desc")!
         
         fetchDataFromService(type: Movies.self, url: url) { result in
             switch result {
             case .success(let movies):
-                self.remoteRequesHandler?.serviceResponse(data: movies)
+                self.remoteRequesHandler?.movieServiceResponse(data: movies)
             case .failure(let error):
                 // TODO:- Handle the error
                 print(error)
             }
-            
+        }
+
+    }
+    
+    func getBaseUrl() {
+        let url = URL(string: "\(baseUrl)/configuration?api_key=\(apiKey)")!
+        
+        fetchDataFromService(type: Images.self, url: url) { result in
+            switch result {
+            case .success(let baseImageUrl):
+                self.remoteRequesHandler?.baseUrlServiceResponse(data: baseImageUrl.images)
+            case .failure(let error):
+                // TODO:- Handle the error
+                print(error)
+            }
         }
     }
+    
     
     private func fetchDataFromService<T: Codable>(type: T.Type, url : URL, completion : @escaping (Result<T,Error>) -> Void) {
         var request = URLRequest(url: url)
@@ -53,5 +69,5 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
             }
             task.resume()
         }
-    }    
+    }
 }

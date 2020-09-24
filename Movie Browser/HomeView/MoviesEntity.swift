@@ -33,7 +33,7 @@ struct Movie: Codable {
     let originalTitle: String?
     let genreIDS: [Int]?
     let title: String?
-    let voteAverage: Int?
+    let voteAverage: Double?
     let overview, releaseDate: String?
 
     enum CodingKeys: String, CodingKey {
@@ -48,5 +48,20 @@ struct Movie: Codable {
         case voteAverage = "vote_average"
         case overview
         case releaseDate = "release_date"
+    }
+}
+
+// MARK:- Images
+struct Images: Codable {
+    let images: BaseImagesUrl
+}
+
+struct BaseImagesUrl: Codable {
+    let baseUrl: String
+    let posterSizes: [String]
+    
+    enum CodingKeys: String, CodingKey {
+        case baseUrl = "base_url"
+        case posterSizes = "poster_sizes"
     }
 }

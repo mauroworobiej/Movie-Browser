@@ -18,7 +18,6 @@ protocol HomeViewProtocol: class {
     func pushedDataFromPresenter(data: [HomeViewModel])
     func startActivityIndicator()
     func stopActivityIndicator()
-
 }
 
 // MARK:- Presenter Protocols
@@ -41,21 +40,15 @@ protocol HomeInteractorInputProtocol: class {
     
     /// Start the data request in the External Data Manager
     func fetchData()
-
 }
 
 // MARK:- Interactor Output Protocols
 
 protocol HomeInteractorOutputProtocol: class {
+    
+    /// Used for the Interactor to pass an array of HomeViewModel to the presenter.
     func pushDataFromInteractor(data: [HomeViewModel])
 }
-
-// MARK:- Data Manager Input Protocols
-
-protocol HomeDataManagerInputProtocol: class {
-    
-}
-
 
 // MARK:- Router Protocols
 
@@ -63,7 +56,6 @@ protocol HomeRouterProtocol: class {
     
     /// Create the View and initialize the viper components.
     static func createHomeModule() -> UIViewController
-
 }
 
 // MARK:- Remote Data Manager Protocols
@@ -72,13 +64,15 @@ protocol HomeRemoteDataManagerInputProtocol: class {
     
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol? { get set }
     
+    /// RemoteDataManager send Movies data from the API to the Interactor
     func getDataFromRemoteDataManager()
+    /// RemoteDataManager send the baseUrl(need it to conform the img url) from the API to the Interactor
+    func getBaseUrl()
 }
-
 
 // MARK:- Remote Request Handler Protocols
 
 protocol HomeRemoteDataManagerOutputProtocol: class {
-    func serviceResponse(data: Movies)
+    func movieServiceResponse(data: Movies)
+    func baseUrlServiceResponse(data: BaseImagesUrl)
 }
-
