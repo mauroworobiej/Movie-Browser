@@ -14,7 +14,7 @@ protocol DetailViewProtocol: class {
     var presenter: DetailPresenterProtocol? { get set }
     
     /// Get detail info about a particular movie
-    func detailFromTheMovie(movieData: MovieViewModel)
+    func moviewDetailFromPresenter(movieData: MovieViewModel)
 
 }
 
@@ -24,6 +24,8 @@ protocol DetailPresenterProtocol: class {
     var view: DetailViewProtocol? { get set }
     var router: DetailRouterProtocol? { get set }
     var movie: MovieViewModel? { get set }
+    
+    func viewDidLoad()
 }
 
 // MARK:- Router Protocols

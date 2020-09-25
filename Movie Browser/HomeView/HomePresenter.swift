@@ -25,6 +25,7 @@ extension HomePresenter: HomePresenterProtocol {
         view?.startActivityIndicator()
         interactor?.fetchData()
     }
+    
     func presentDetailView(with viewModel: MovieViewModel) {
         if let view = self.view {
             router?.presentMovieDetailView(from: view, with: viewModel)

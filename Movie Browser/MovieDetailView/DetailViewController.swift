@@ -7,16 +7,44 @@
 //
 
 import UIKit
+import SDWebImage
 
 class DetailViewController: UIViewController {
 
     // MARK:- Properties
     
+    lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.dataSource = self
+        table.delegate = self
+        table.register(DetailMovieCell.self, forCellReuseIdentifier: "detailMoviewCell")
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
+    }()
+    
     var presenter: DetailPresenterProtocol?
+    private var movie: MovieViewModel?
+    
+    // MARK:- Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        title = "Detail"
+        presenter?.viewDidLoad()
+        setupLayout()
+    }
+    
+    // MARK: - Helper Methods
+    
+    func setupLayout() {
+        view.addSubview(tableView)
+        
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
 }
 
@@ -24,9 +52,37 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: DetailViewProtocol {
     
-    func detailFromTheMovie(movieData: MovieViewModel) {
-        // TODO: complete the view with de movieData
+    func moviewDetailFromPresenter(movieData: MovieViewModel) {
+        movie = movieData
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK:- Table view Data Source
+
+extension DetailViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
-    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "detailMoviewCell", for: indexPath) as! DetailMovieCell
+        let imageURL = movie?.posterPaht ?? ""
+        cell.movieImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: "camera"))
+        cell.titleLabel.text = movie?.title
+        cell.descriptionLabel.text = movie?.overview
+        return cell
+    }
+}
+
+// MARK:- Table view Delegate
+
+extension DetailViewController: UITableViewDelegate {
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return view.intrinsicContentSize.height
+//    }
 }

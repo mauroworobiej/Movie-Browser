@@ -36,9 +36,8 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        title = "Movies"
         setupLayout()
-        
         presenter?.viewDidLoad()
     }
     

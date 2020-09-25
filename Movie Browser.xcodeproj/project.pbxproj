@@ -25,6 +25,7 @@
 		7D89BE24251BC726006E618F /* MoviesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE23251BC726006E618F /* MoviesEntity.swift */; };
 		7D89BE26251BD924006E618F /* MovieViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE25251BD924006E618F /* MovieViewModel.swift */; };
 		7D89BE28251BEB7F006E618F /* HomeMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D89BE27251BEB7F006E618F /* HomeMovieCell.swift */; };
+		7DF38ADD251E30D300A81525 /* DetailMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF38ADC251E30D300A81525 /* DetailMovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		7D89BE23251BC726006E618F /* MoviesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesEntity.swift; sourceTree = "<group>"; };
 		7D89BE25251BD924006E618F /* MovieViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieViewModel.swift; sourceTree = "<group>"; };
 		7D89BE27251BEB7F006E618F /* HomeMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovieCell.swift; sourceTree = "<group>"; };
+		7DF38ADC251E30D300A81525 /* DetailMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieCell.swift; sourceTree = "<group>"; };
 		9BFE74C1D766E19BC891A963 /* Pods-Movie Browser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie Browser.release.xcconfig"; path = "Target Support Files/Pods-Movie Browser/Pods-Movie Browser.release.xcconfig"; sourceTree = "<group>"; };
 		C65E046F3FC9F70A4401330F /* Pods-Movie Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Movie Browser.debug.xcconfig"; path = "Target Support Files/Pods-Movie Browser/Pods-Movie Browser.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 		7D6B95D0251D332900D7AC3C /* MovieDetailView */ = {
 			isa = PBXGroup;
 			children = (
+				7DF38ADC251E30D300A81525 /* DetailMovieCell.swift */,
 				7D6B95D7251D348B00D7AC3C /* DetailViewController.swift */,
 				7D6B95D3251D345300D7AC3C /* DetailPresenter.swift */,
 				7D6B95D1251D344000D7AC3C /* DetailRouter.swift */,
@@ -257,6 +260,7 @@
 				7D2E8C61251B7F1C0067DC91 /* AppDelegate.swift in Sources */,
 				7D89BE1C251B8AD6006E618F /* HomeProtocols.swift in Sources */,
 				7D2E8C63251B7F1C0067DC91 /* SceneDelegate.swift in Sources */,
+				7DF38ADD251E30D300A81525 /* DetailMovieCell.swift in Sources */,
 				7D89BE26251BD924006E618F /* MovieViewModel.swift in Sources */,
 				7D89BE1E251B8AFC006E618F /* HomeInteractor.swift in Sources */,
 				7D89BE17251B8120006E618F /* HomeViewController.swift in Sources */,

@@ -39,7 +39,7 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
     func movieServiceResponse(data: Movies) {
         group.leave()
         group.notify(queue: .main) {
-            let baseUrl = self.baseImgUrl!.baseUrl + self.baseImgUrl!.posterSizes[0]
+            let baseUrl = self.baseImgUrl!.baseUrl + self.baseImgUrl!.posterSizes[2]
             for movie in data.results {
                 let title = movie.title ?? "No description"
                 let overview = movie.overview ?? "No description"
