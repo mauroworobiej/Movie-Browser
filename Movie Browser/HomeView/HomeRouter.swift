@@ -31,9 +31,11 @@ class HomeRouter: HomeRouterProtocol {
         return nav
     }
     
-    func presentMovieDetailView(from view: HomeViewProtocol, with: MovieViewModel) {
-        // TODO: Present the new viper module form view with the data
+    func presentMovieDetailView(from view: HomeViewProtocol, with data: MovieViewModel) {
+        
+        if let homeView = view as? UIViewController {
+            let detailView = DetailRouter.createHomeModule(with: data) as! UIViewController
+            homeView.navigationController?.pushViewController(detailView, animated: true)
+        }
     }
-    
-       
 }

@@ -30,5 +30,5 @@ protocol DetailPresenterProtocol: class {
 
 protocol DetailRouterProtocol: class {
     /// Create the View and initialize the viper components.
-    static func createHomeModule() -> DetailViewProtocol
+    static func createHomeModule(with data: MovieViewModel) -> DetailViewProtocol
 }

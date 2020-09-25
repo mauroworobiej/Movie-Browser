@@ -58,7 +58,7 @@ protocol HomeRouterProtocol: class {
     /// Create the View and initialize the viper components.
     static func createHomeModule() -> UIViewController
     /// Push a detail view to a view's navigation controller.
-    func presentMovieDetailView(from view: HomeViewProtocol, with: MovieViewModel)
+    func presentMovieDetailView(from view: HomeViewProtocol, with data: MovieViewModel)
 }
 
 // MARK:- Remote Data Manager Protocols

@@ -10,17 +10,18 @@ import Foundation
 import UIKit
 
 class DetailRouter: DetailRouterProtocol {
-    //TODO: inyect parameters on createHomeModule
-    static func createHomeModule() -> DetailViewProtocol {
-           
-           let view = DetailViewController()
-           let presenter: DetailPresenterProtocol = DetailPresenter()
-           let router: DetailRouterProtocol = DetailRouter()
-           
-           view.presenter = presenter
-           presenter.view = view
-           presenter.router = router
-           
-           return view
-       }
+    
+    static func createHomeModule(with data: MovieViewModel) -> DetailViewProtocol {
+        
+        let view = DetailViewController()
+        let presenter: DetailPresenterProtocol = DetailPresenter()
+        let router: DetailRouterProtocol = DetailRouter()
+        
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.movie = data
+        
+        return view
+    }
 }
