@@ -23,7 +23,7 @@ class HomeInteractor: HomeInteractorInputProtocol {
         group.enter()
         remoteDataManager?.getDataFromRemoteDataManager()
         group.enter()
-        remoteDataManager?.getBaseUrl()
+        remoteDataManager?.getBaseUrlForImages()
     }
 }
 
@@ -34,7 +34,6 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
         baseImgUrl = data
         group.leave()
     }
-    
     
     func movieServiceResponse(data: Movies) {
         group.leave()
@@ -49,9 +48,5 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
             }
             self.presenter?.pushDataFromInteractor(data: self.movies)
         }
-        
     }
-    
-    
-    
 }

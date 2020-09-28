@@ -13,8 +13,8 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     // MARK:- Properties
     
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol?
-    private let apiKey = "2e7aef3dbc345c49c3540bfeea28b24f"
-    private let baseUrl = "https://api.themoviedb.org/3"
+    private let apiKey = Constants.apyKey
+    private let baseUrl = Constants.baseUrl
     
     // MARK:- Remote Data Manager Input Protocol
     func getDataFromRemoteDataManager() {
@@ -32,7 +32,7 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
 
     }
     
-    func getBaseUrl() {
+    func getBaseUrlForImages() {
         let url = URL(string: "\(baseUrl)/configuration?api_key=\(apiKey)")!
         
         fetchDataFromService(type: Images.self, url: url) { result in

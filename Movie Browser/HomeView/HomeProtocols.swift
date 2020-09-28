@@ -70,7 +70,7 @@ protocol HomeRemoteDataManagerInputProtocol: class {
     /// RemoteDataManager send Movies data from the API to the Interactor
     func getDataFromRemoteDataManager()
     /// RemoteDataManager send the baseUrl(need it to conform the img url) from the API to the Interactor
-    func getBaseUrl()
+    func getBaseUrlForImages()
 }
 
 // MARK:- Remote Request Handler Protocols

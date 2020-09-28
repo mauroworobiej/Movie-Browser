@@ -44,9 +44,7 @@ class HomeViewController: UIViewController {
     // MARK:- Helper Methods
     
     func setupLayout() {
-        
-        view.addSubview(tableView)
-        view.addSubview(activityIndicator)
+        view.addSubviews(tableView, activityIndicator)
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),

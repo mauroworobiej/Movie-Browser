@@ -50,10 +50,7 @@ class DetailMovieCell: UITableViewCell {
     // MARK:- Helper Methods
     
     private func setupLayout() {
-        
-        addSubview(movieImage)
-        addSubview(titleLabel)
-        addSubview(descriptionLabel)
+        addSubviews(movieImage, titleLabel, descriptionLabel)
         
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: topAnchor),
