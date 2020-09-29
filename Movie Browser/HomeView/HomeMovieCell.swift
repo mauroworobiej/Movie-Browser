@@ -52,6 +52,7 @@ class HomeMovieCell: UITableViewCell {
     
     private func setupLayout() {
         addSubviews(movieImage, titleLabel, descriptionLabel)
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         NSLayoutConstraint.activate([
             movieImage.topAnchor.constraint(equalTo: topAnchor, constant: 5),

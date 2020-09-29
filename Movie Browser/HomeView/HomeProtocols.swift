@@ -15,7 +15,8 @@ protocol HomeViewProtocol: class {
      
     var presenter: HomePresenterProtocol? { get set }
     
-    func pushedDataFromPresenter(data: [MovieViewModel])
+    func fechedMoviesFromPresenter(data: [MovieViewModel])
+    func filteredMoviesFromPresenter(data: [MovieViewModel])
     func startActivityIndicator()
     func stopActivityIndicator()
 }
@@ -30,6 +31,7 @@ protocol HomePresenterProtocol: class {
     
     func viewDidLoad()
     func presentDetailView(with viewModel: MovieViewModel)
+    func filterBy(query: String)
 }
 
 // MARK:- Interactor Input Protocols
@@ -40,7 +42,9 @@ protocol HomeInteractorInputProtocol: class {
     var remoteDataManager: HomeRemoteDataManagerInputProtocol? { get set }
     
     /// Start the data request in the External Data Manager
-    func fetchData()
+    func fetchMovies()
+    /// Filter the movies titles that match with query pased by paramether
+    func filterMovies(query: String)
 }
 
 // MARK:- Interactor Output Protocols
@@ -48,7 +52,9 @@ protocol HomeInteractorInputProtocol: class {
 protocol HomeInteractorOutputProtocol: class {
     
     /// Used for the Interactor to pass an array of HomeViewModel to the presenter.
-    func pushDataFromInteractor(data: [MovieViewModel])
+    func fechedMovies(data: [MovieViewModel])
+    /// Used for the Interactor to pass an array of HomeViewModel, filtered by title, to the presenter.
+    func filteredMovies(data: [MovieViewModel])
 }
 
 // MARK:- Router Protocols

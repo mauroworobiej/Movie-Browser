@@ -15,8 +15,9 @@ class HomeViewController: UIViewController {
     
     var presenter: HomePresenterProtocol?
     private var movies = [MovieViewModel]()
+    private var filteredMovies: [MovieViewModel]?
     
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
         table.delegate = self
@@ -25,11 +26,23 @@ class HomeViewController: UIViewController {
         return table
     }()
     
-    var activityIndicator: UIActivityIndicatorView = {
+    private let activityIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         indicator.hidesWhenStopped = true
         indicator.translatesAutoresizingMaskIntoConstraints = false
         return indicator
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.delegate = self
+        controller.searchBar.delegate = self
+        controller.hidesNavigationBarDuringPresentation = true
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.definesPresentationContext = true
+        controller.searchBar.placeholder = "Search for a movie"
+        navigationItem.searchController = controller
+        return controller
     }()
     
     // MARK:- Lifecycle
@@ -55,9 +68,7 @@ class HomeViewController: UIViewController {
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.widthAnchor.constraint(equalToConstant: 150),
-            activityIndicator.heightAnchor.constraint(equalToConstant: 150)
-
-
+            activityIndicator.heightAnchor.constraint(equalToConstant: 150),
         ])
     }
 }
@@ -66,7 +77,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: HomeViewProtocol {
     
-    func pushedDataFromPresenter(data: [MovieViewModel]) {
+    func fechedMoviesFromPresenter(data: [MovieViewModel]) {
         movies = data
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -83,22 +94,41 @@ extension HomeViewController: HomeViewProtocol {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
         }
-    }    
+    }
+    
+    func filteredMoviesFromPresenter(data: [MovieViewModel]) {
+        self.filteredMovies = data
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
 }
 
 // MARK:- Table view Data Source
 
 extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        let moviesToShow: [MovieViewModel]
+        if searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true) {
+            moviesToShow = filteredMovies!
+        } else {
+            moviesToShow = movies
+        }
+        return moviesToShow.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "moviewCell", for: indexPath) as! HomeMovieCell
-        let imageURL = movies[indexPath.row].posterPaht ?? ""
+        let moviesToShow: [MovieViewModel]
+        if searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true) {
+            moviesToShow = filteredMovies!
+        } else {
+            moviesToShow = movies
+        }
+        let imageURL = moviesToShow[indexPath.row].posterPaht ?? ""
         cell.movieImage.sd_setImage(with: URL(string: imageURL), placeholderImage: UIImage(systemName: "camera"))
-        cell.titleLabel.text = movies[indexPath.row].title
-        cell.descriptionLabel.text = movies[indexPath.row].overview
+        cell.titleLabel.text = moviesToShow[indexPath.row].title
+        cell.descriptionLabel.text = moviesToShow[indexPath.row].overview
         return cell
     }
 }
@@ -108,6 +138,34 @@ extension HomeViewController: UITableViewDataSource {
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presenter?.presentDetailView(with: movies[indexPath.row])
+        let moviesToShow: [MovieViewModel]
+        if searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true) {
+            moviesToShow = filteredMovies!
+        } else {
+            moviesToShow = movies
+        }
+        presenter?.presentDetailView(with: moviesToShow[indexPath.row])
+    }
+}
+
+// MARK: Search Controller Delegate
+
+extension HomeViewController: UISearchControllerDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchController.isActive = false
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+// MARK: Search bar Delegate
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.filterBy(query: searchText)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
 }

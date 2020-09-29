@@ -13,7 +13,7 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     // MARK:- Properties
     
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol?
-    private let apiKey = Constants.apyKey
+    private let apiKey = Constants.apiKey
     private let baseUrl = Constants.baseUrl
     
     // MARK:- Remote Data Manager Input Protocol

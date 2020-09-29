@@ -14,16 +14,22 @@ class HomeInteractor: HomeInteractorInputProtocol {
     var presenter: HomeInteractorOutputProtocol?
     var remoteDataManager: HomeRemoteDataManagerInputProtocol?
     private var movies = [MovieViewModel]()
+    private var filteredMovies = [MovieViewModel]()
     private var baseImgUrl: BaseImagesUrl?
     private let group = DispatchGroup()
 
     // MARK:- Interactor Input Protocol
     
-    func fetchData() {
+    func fetchMovies() {
         group.enter()
         remoteDataManager?.getDataFromRemoteDataManager()
         group.enter()
         remoteDataManager?.getBaseUrlForImages()
+    }
+    
+    func filterMovies(query: String) {
+        filteredMovies = movies.filter({ $0.title.contains(query) })
+        presenter?.filteredMovies(data: filteredMovies)
     }
 }
 
@@ -46,7 +52,7 @@ extension HomeInteractor: HomeRemoteDataManagerOutputProtocol {
                 let singleMoview = MovieViewModel(title: title, overview: overview, posterPaht: posterPath)
                 self.movies.append(singleMoview)
             }
-            self.presenter?.pushDataFromInteractor(data: self.movies)
+            self.presenter?.fechedMovies(data: self.movies)
         }
     }
 }

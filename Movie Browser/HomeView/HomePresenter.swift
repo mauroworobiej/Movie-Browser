@@ -23,7 +23,7 @@ extension HomePresenter: HomePresenterProtocol {
     
     func viewDidLoad() {
         view?.startActivityIndicator()
-        interactor?.fetchData()
+        interactor?.fetchMovies()
     }
     
     func presentDetailView(with viewModel: MovieViewModel) {
@@ -31,16 +31,22 @@ extension HomePresenter: HomePresenterProtocol {
             router?.presentMovieDetailView(from: view, with: viewModel)
         }        
     }
+    
+    func filterBy(query: String) {
+        interactor?.filterMovies(query: query)
+       }
 }
 
 // MARK:- Interactor Output Protocol
 
 extension HomePresenter: HomeInteractorOutputProtocol {
     
-    func pushDataFromInteractor(data: [MovieViewModel]) {
-        view?.pushedDataFromPresenter(data: data)
+    func fechedMovies(data: [MovieViewModel]) {
+        view?.fechedMoviesFromPresenter(data: data)
         view?.stopActivityIndicator()
     }
     
-    
+    func filteredMovies(data: [MovieViewModel]) {
+        view?.filteredMoviesFromPresenter(data: data)
+    }
 }

@@ -16,7 +16,6 @@ class DetailViewController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView()
         table.dataSource = self
-        table.delegate = self
         table.register(DetailMovieCell.self, forCellReuseIdentifier: "detailMoviewCell")
         table.translatesAutoresizingMaskIntoConstraints = false
         return table
@@ -76,13 +75,4 @@ extension DetailViewController: UITableViewDataSource {
         cell.descriptionLabel.text = movie?.overview
         return cell
     }
-}
-
-// MARK:- Table view Delegate
-
-extension DetailViewController: UITableViewDelegate {
-//
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return view.intrinsicContentSize.height
-//    }
 }

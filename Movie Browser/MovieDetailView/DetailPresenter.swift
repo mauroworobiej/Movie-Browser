@@ -21,7 +21,5 @@ class DetailPresenter: DetailPresenterProtocol {
     func viewDidLoad() {
         guard let movie = self.movie else { return }
         view?.moviewDetailFromPresenter(movieData: movie)
-    }
-    
-    
+    }    
 }
