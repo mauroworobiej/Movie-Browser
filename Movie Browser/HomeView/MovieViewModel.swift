@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MovieViewModel {
+struct MovieViewModel: Equatable {
     let title: String
     let overview: String
     let posterPaht: String?

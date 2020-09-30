@@ -15,37 +15,47 @@ class HomeRemoteDataManager: HomeRemoteDataManagerInputProtocol {
     var remoteRequesHandler: HomeRemoteDataManagerOutputProtocol?
     private let apiKey = Constants.apiKey
     private let baseUrl = Constants.baseUrl
-    
+    private var movies: Movies?
+    private var imgUrl: BaseImagesUrl?
+    private let group = DispatchGroup()
+
     // MARK:- Remote Data Manager Input Protocol
     func getDataFromRemoteDataManager() {
+        group.enter()
         let url = URL(string: "\(baseUrl)/discover/movie?api_key=\(apiKey)&sort_by=popularity.desc")!
         
         fetchDataFromService(type: Movies.self, url: url) { result in
             switch result {
             case .success(let movies):
-                self.remoteRequesHandler?.movieServiceResponse(data: movies)
+                self.movies = movies
+                self.group.leave()
             case .failure(let error):
                 // TODO:- Handle the error
                 print(error)
             }
         }
-
     }
     
     func getBaseUrlForImages() {
+        group.enter()
         let url = URL(string: "\(baseUrl)/configuration?api_key=\(apiKey)")!
         
         fetchDataFromService(type: Images.self, url: url) { result in
             switch result {
             case .success(let baseImageUrl):
-                self.remoteRequesHandler?.baseUrlServiceResponse(data: baseImageUrl.images)
+                self.imgUrl = baseImageUrl.images
+                self.group.leave()
             case .failure(let error):
                 // TODO:- Handle the error
                 print(error)
             }
         }
+        group.notify(queue: .main) {
+            self.remoteRequesHandler?.baseUrlServiceResponse(data: self.imgUrl!)
+            self.remoteRequesHandler?.movieServiceResponse(data: self.movies!)
+        }
     }
-    
+        
     // MARK:- Helper Methods
     
     private func fetchDataFromService<T: Codable>(type: T.Type, url : URL, completion : @escaping (Result<T,Error>) -> Void) {
