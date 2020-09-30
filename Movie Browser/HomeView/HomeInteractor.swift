@@ -20,8 +20,8 @@ class HomeInteractor: HomeInteractorInputProtocol {
     // MARK:- Interactor Input Protocol
     
     func fetchMovies() {
-        remoteDataManager?.getDataFromRemoteDataManager()
         remoteDataManager?.getBaseUrlForImages()
+        remoteDataManager?.getDataFromRemoteDataManager()
     }
     
     func filterMovies(query: String) {

@@ -15,7 +15,7 @@ class HomeInteractorTests: XCTestCase {
     
     var sut: HomeInteractorProtocol?
     var mockRemoteDataManager: MockRemoteDataManager?
-    var mockPresenter: MockPresenter?
+    var mockPresenter: MockPresenter!
     
     override func setUp() {
         sut = HomeInteractor()
@@ -37,18 +37,40 @@ class HomeInteractorTests: XCTestCase {
     
     func testFetchMovies() {
         // Given
-        let expectedResult = MovieViewModel(title: "Movie Title",
+        let expectedResult: [MovieViewModel]? = [MovieViewModel(title: "Movie Title",
                                             overview: "Description",
-                                            posterPaht: "path/movie")
-        let promise = expectation(description: "fetchMove invoked")
+                                            posterPaht: "baseurl/imgw300path/movie")]
         
         // When
         sut?.fetchMovies()
-        promise.fulfill()
-        wait(for: [promise], timeout: 5)
         
         // Then
         XCTAssertEqual(mockPresenter!.fechedMoviesProperty, expectedResult)
+    }
+    
+    func testfilterMoviesWhenMovieExist() {
+        // Given
+        sut?.fetchMovies()
+        let expectedResult: [MovieViewModel]? = [MovieViewModel(title: "Movie Title",
+                                            overview: "Description",
+                                            posterPaht: "baseurl/imgw300path/movie")]
+        
+        // When
+        sut?.filterMovies(query: "Movie")
+        
+        // Then
+        XCTAssertEqual(mockPresenter!.filteredMoviesProperty, expectedResult)
+    }
+    
+    func testfilterMoviesWhenMovieDoesntExist() {
+        // Given
+        sut?.fetchMovies()
+        
+        // When
+        sut?.filterMovies(query: "Movie Title Doesn't Exist")
+        
+        // Then
+        XCTAssertEqual(mockPresenter!.filteredMoviesProperty, [], "When filter by a non - existing title, the returned array should be empty")
     }
 }
 
@@ -85,14 +107,14 @@ class MockRemoteDataManager: HomeRemoteDataManagerInputProtocol {
 
 class MockPresenter: HomeInteractorOutputProtocol {
     
-    var fechedMoviesProperty: MovieViewModel?
-    var filteredMoviesProperty: MovieViewModel?
+    var fechedMoviesProperty = [MovieViewModel]()
+    var filteredMoviesProperty = [MovieViewModel]()
     
     func fechedMovies(data: [MovieViewModel]) {
-        fechedMoviesProperty = data[0]
+        fechedMoviesProperty = data
     }
     
     func filteredMovies(data: [MovieViewModel]) {
-        filteredMoviesProperty = data[0]
+        filteredMoviesProperty = data
     }
 }
